@@ -9,7 +9,7 @@ class Processing : PApplet() {
     private val screenHeight = 1000
     private val screenWidth = 1000
 
-    private val speed = 0.08f
+    private val speed = 0.06f
 
     private object Position {
         var move = 0f
@@ -61,6 +61,7 @@ class Processing : PApplet() {
 
         translate(screenWidth / 2f, screenHeight / 2f, Position.move)
         rotateY(Position.rotate)
+
         showRobot()
     }
 
@@ -103,9 +104,26 @@ class Processing : PApplet() {
 
             matrix {
                 translate(0f, boxHeight / 4f, boxHeight / 7f)
-                rotateX(PI / 6 * -rotate - PI / 1.5f)
+                rotateX(PI / 5 * -rotate - PI / 1.5f)
 
-                box(boxWidth / 4f, boxHeight / 3f, boxDepth / 1.5f)
+                box(boxWidth / 4f, boxHeight / 3f, boxDepth / 3f)
+
+                matrix {
+                    translate(0f, -boxHeight / 6f, 0f)
+                    box(boxWidth / 3f, boxHeight / 5f, boxDepth / 1.5f)
+                    matrix {
+                        translate(-boxWidth / 8f, -boxHeight / 9f, -boxDepth / 5f)
+                        box(15f, 50f, 15f)
+                    }
+                    matrix {
+                        translate(0f, -boxHeight / 9f, -boxDepth / 5f)
+                        box(15f, 50f, 15f)
+                    }
+                    matrix {
+                        translate(boxWidth / 8f, -boxHeight / 9f, -boxDepth / 5f)
+                        box(15f, 50f, 15f)
+                    }
+                }
             }
         }
     }
