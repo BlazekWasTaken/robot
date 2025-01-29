@@ -37,13 +37,14 @@ class Processing : PApplet() {
         directionalLight(255f, 0f, 100f, -1f, -1f, -1f)
 
         val r = 1f * max(screenWidth, screenHeight)
-        val theta = 0f
-        val phi = map(mouseX.toFloat(), 0f, width.toFloat(), -PI, PI)
+        val theta = PI / 2f
+        val phi = map(mouseX.toFloat(), 0f, screenWidth.toFloat(), -PI, PI)
+        println("$mouseX $mouseY")
 
         val x = r * sin(phi) * cos(theta)
         val y = r * sin(phi) * sin(theta)
         val z = r * cos(phi)
-        camera(x, y, z, height / 2f, width / 2f, 0f, 0f, 1f, 0f)
+        camera(x, y, z, screenHeight / 2f, screenWidth / 2f, 0f, 0f, 1f, 0f)
 
         noStroke()
         noFill()
@@ -95,14 +96,14 @@ class Processing : PApplet() {
         matrix {
             val rotate = positionInt * PI / 8 * sin(frameCount * speed)
             translate(positionInt * boxWidth / 2, -1 * boxHeight / 2.1f, 0f)
-            rotateX(PI / 6 - rotate)
+            rotateX(rotate)
             translate(0f, boxHeight / 3f, 0f)
 
             box(boxWidth / 4f, boxHeight / 2f, boxDepth / 1.5f)
 
             matrix {
-                translate(0f, boxHeight / 5f, boxHeight / 6f)
-                rotateX(PI / 6 * -rotate - PI / 2)
+                translate(0f, boxHeight / 4f, boxHeight / 7f)
+                rotateX(PI / 6 * -rotate - PI / 1.5f)
 
                 box(boxWidth / 4f, boxHeight / 3f, boxDepth / 1.5f)
             }
